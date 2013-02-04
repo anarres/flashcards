@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"></meta>
+<title>Flashcards | Captain Awkward</title>
+<meta name="description" content="The game where you practise navigating social situations using the wisdom of Captain Awkward.">
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="stylesheet" type="text/css" href="style.css">
+<script type="text/javascript" src="jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="questionsAndAnswers.js"></script>
+<script type="text/javascript" src="flashcards.js"></script>
+</head>
+
+<body onload="init()">
+
+<div id="container">
+
+<h1>Captain Awkward flashcards game</h1>
+
+<p class="tagline">The game where you practise navigating social situations using the wisdom of <a href="http://captainawkward.com">Captain Awkward</a> <span class="small">(who is not affiliated with this app in any way)</span>. <span style="color:red">Under development, may not work.</span></p>
+
+<div id="instructions">
+    <ul id="think" style="text-align:center;margin:0px auto;">
+        <li>Decide how you would deal with the Awkward Situation</li>
+        <li>Click the Awkward Situation Card to flip it over</li>
+        <li>Check how your answer compares with Captain Awkward's!</li>
+    </ul>
+</div> <!--#instructions-->
+
+<div id="cardContainer">
+
+    <div id="navigation" style="width:100%;">
+        <div style="width:33%;float:left;">
+            <button style="margin-left:40px;" onclick="previousCard()">PREVIOUS</button>
+        </div>
+        <div style="width:33%;float:left;">
+            <button onclick="randomCard()">RANDOM</button>
+        </div>
+        <div style="width:33%;float:left;">
+            <button style="float:right;margin-right:40px;" onclick="nextCard()">NEXT</button>
+        </div>
+        <div style="clear:both"></div>
+    </div> <!--#navigation-->
+
+    <div id="card" onclick="flipCard()">
+        <!--
+        <img src="heartLaurel.png" style="width:70px;float:left;opacity:0.8;">
+        <br>
+        -->
+        <p id="question"></p>
+        <p style="text-align:right;padding:5px;">
+            <a href="" style="visibility:hidden;" id="link">Source</a>
+        </p>
+        <!--
+        <img src="heartLaurel.png" style="width:70px;float:right;opacity:0.8;">
+        -->
+        <div style="clear:both;"></div>
+    </div> <!--#card-->
+
+</div> <!--#cardContainer-->
+
+</div> <!--#container-->
+</body>
+</html>

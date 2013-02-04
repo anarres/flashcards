@@ -1,0 +1,111 @@
+* {
+    margin:0px;
+    padding:0px;
+    border: 0px;
+}
+body {
+    color: #222;
+    background-color: #233a4d;
+    background-image: url("blackDiamondOverlay.png");
+    font-family: Georgia, serif;
+    font-size: 18px;
+}
+#container {
+    min-width:200px;
+    max-width:700px;
+    margin:10px auto;
+    padding:2px 20px;
+    padding-bottom:100px;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 10px solid #cbbf9b;    
+}
+h1 {
+    font-size:1.8em;
+    font-weight:normal;
+    text-align: center;
+    padding: 15px 0px;
+    padding-bottom: 0px;
+}
+h2, h3 {
+    font-size:1.3em;
+    font-weight:normal;
+    padding: 15px 0px;
+}
+p {
+    padding: 15px 0px;
+}
+p.tagline {
+    font-size:1em;
+    font-weight:normal;
+    font-style: italic;
+    text-align: center;
+    padding: 5px 0px;
+}
+a {
+    color: #233a4d;
+    text-decoration: underline;
+    font-weight: normal;
+}
+a:hover {
+    color: #bf2001;
+}
+button {
+    padding: 1px 6px;
+    border-radius: 5px;
+    border-top: 1px solid grey;
+    border-left: 1px solid grey;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+}
+div#instructions {
+    padding: 15px 0px;
+}
+div#instructions li {
+    list-style-type:circle;
+    list-style-image:url("casinoStar.png");
+    list-style-position:inside;
+    padding: 2px 0px;
+}
+div#cardContainer {
+    min-height: 500px;
+    padding: 10px 0px;
+}
+div#navigation {
+    padding: 5px 0px;
+}
+div#card {
+    padding: 20px 10px;
+    margin: 10px 40px;
+    min-height: 200px;
+    color: #222;
+    background-color: #faf6ec;
+    background-image:url('star.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius:15px;
+    border-top: 2px solid #cbbf9b;
+    border-left: 2px solid #cbbf9b;
+    border-right: 2px solid #9a9276;
+    border-bottom: 2px solid #9a9276;
+    cursor: pointer;
+}
+div#card.dark {
+    color: #fffff0;
+    background-color: #4d2323;
+    background-color: #000;
+    background-image:url('patternCooler.png');
+    background-repeat: repeat;
+    border-top: 2px solid #cbbf9b;
+    border-left: 2px solid #cbbf9b;
+    border-right: 5px solid #cbbf9b;
+    border-bottom: 5px solid #cbbf9b;
+}
+div#card p {
+    font-style: italic;
+    font-size: 1.2em;
+    line-height: 1.4em;
+    text-align:center;
+    padding: 15px 0px;
+}
