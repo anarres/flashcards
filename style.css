@@ -6,8 +6,8 @@
 body {
     color: #222;
     background-color: #233a4d;
-    background-image: url("blackDiamondOverlay.png");
     font-family: Georgia, serif;
+    font-family: Palatino, serif;
     font-size: 18px;
 }
 #container {
@@ -35,13 +35,6 @@ h2, h3 {
 p {
     padding: 15px 0px;
 }
-p.tagline {
-    font-size:1em;
-    font-weight:normal;
-    font-style: italic;
-    text-align: center;
-    padding: 5px 0px;
-}
 a {
     color: #233a4d;
     text-decoration: underline;
@@ -50,30 +43,39 @@ a {
 a:hover {
     color: #bf2001;
 }
-button {
-    padding: 1px 6px;
-    border-radius: 5px;
-    border-top: 1px solid grey;
-    border-left: 1px solid grey;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-    cursor: pointer;
-}
+
 div#instructions {
     padding: 15px 0px;
 }
-div#instructions li {
-    list-style-type:circle;
-    list-style-image:url("casinoStar.png");
-    list-style-position:inside;
-    padding: 2px 0px;
+div#instructions p {
+    text-align:center;
+}
+
+div#navigation {
+    padding: 20px 30px;
+    width: 100%;
+}
+div.navButton {
+    width: 30%;
+    float: left;
+    margin: 2px;
+}
+button {
+    padding: 5px 9px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #706757;
+    background-color: #706b63;
+    width: 100%;
+}
+button:hover {
+    color: #ff0;
+    box-shadow: 1px 2px #ff0;
 }
 div#cardContainer {
     min-height: 500px;
     padding: 10px 0px;
-}
-div#navigation {
-    padding: 5px 0px;
 }
 div#card {
     padding: 20px 10px;
@@ -81,26 +83,26 @@ div#card {
     min-height: 200px;
     color: #222;
     background-color: #faf6ec;
-    background-image:url('star.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    border-radius:15px;
-    border-top: 2px solid #cbbf9b;
-    border-left: 2px solid #cbbf9b;
-    border-right: 2px solid #9a9276;
-    border-bottom: 2px solid #9a9276;
+    border-radius:10px;
+    border: 25px solid #fff;
+    box-shadow: 1px 1px 3px #92865f;
     cursor: pointer;
 }
-div#card.dark {
+div#card.c0 {
     color: #fffff0;
-    background-color: #4d2323;
-    background-color: #000;
-    background-image:url('patternCooler.png');
-    background-repeat: repeat;
-    border-top: 2px solid #cbbf9b;
-    border-left: 2px solid #cbbf9b;
-    border-right: 5px solid #cbbf9b;
-    border-bottom: 5px solid #cbbf9b;
+    background-color: #ce3d1c;
+}
+div#card.c1 {
+    color: #fffff0;
+    background-color: #4c880c;
+}
+div#card.c2 {
+    color: #fffff0;
+    background-color: #204d84;
+}
+div#card.c3 {
+    color: #fffff0;
+    background-color: #972d57;
 }
 div#card p {
     font-style: italic;
@@ -108,4 +110,4 @@ div#card p {
     line-height: 1.4em;
     text-align:center;
     padding: 15px 0px;
-}
+}    box-shadow: 1px 1px 1px #ff0;
