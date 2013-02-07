@@ -1,11 +1,9 @@
-// Global vars OF JOY!
 var cardIndex = 0;
 var qs;
 var numCards;
 var maxIndex;
 var isFlipped = 0;
 
-// Returns a random integer between minInt and maxInt
 function getRandomInt (minInt, maxInt) {
     return Math.floor(Math.random() * (maxInt - minInt + 1)) + minInt;
 }
@@ -37,9 +35,6 @@ function flipCard() {
             $("#card").removeClass("c2");
             $("#card").removeClass("c3");
             document.getElementById("question").innerHTML = qs[cardIndex]["a"];
-            var url = qs[cardIndex]["url"];
-            document.getElementById("link").setAttribute("href",url);
-            document.getElementById("link").style.visibility = "visible";
             $("#card").fadeIn(1000);
         });
     }
@@ -50,7 +45,6 @@ function setCardColor() {
     $("#card").addClass(classes[n]);
 }
 function displayCard() {
-    document.getElementById("link").style.visibility = "hidden";
     $("#card").fadeOut(400, function() {
         setCardColor();
         isFlipped = 0;
@@ -76,12 +70,10 @@ function init() {
         qs = jsonObject;
         numCards = qs.length;
         maxIndex = numCards-1;
-        document.getElementById("link").style.visibility = "hidden";
         setCardColor();
         document.getElementById("question").innerHTML = qs[cardIndex]["q"];
         $("#card").fadeIn(1000);
     });
 }
-
 
 
