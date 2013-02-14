@@ -1,11 +1,9 @@
-var jsonUrl = "http://foofurple.com/captain-awkward-flashcards/questionsAndAnswers.json";
+var jsonUrl = "file:///home/katie/prog/flashcards/questionsAndAnswers.json";
 var cardIndex = 0;
 var qs;
 var numCards;
 var maxIndex;
 var isFlipped = 0;
-var colorIndex = 0;
-var colorClasses = ['c0','c1','c2','c3'];
 
 function getRandomInt (minInt, maxInt) {
     return Math.floor(Math.random() * (maxInt - minInt + 1)) + minInt;
@@ -31,25 +29,29 @@ function randomCardIndex() {
 }
 function flipCard() {
     if (isFlipped == 0) {
-        $("#card").fadeOut(400,function(){
+        $("#card").fadeOut(400, function() {
             isFlipped = 1;
             $("#card").removeClass("c0");
             $("#card").removeClass("c1");
             $("#card").removeClass("c2");
             $("#card").removeClass("c3");
             document.getElementById("question").innerHTML = qs[cardIndex]["a"];
-        }).fadeIn(400);
+            $("#card").fadeIn(1000);
+        });
     }
 }
+function setCardColor() {
+    var n = getRandomInt(0,3);
+    var classes = ['c0','c1','c2','c3'];
+    $("#card").addClass(classes[n]);
+}
 function displayCard() {
-    $("#card").fadeOut(400,function(){
-        colorIndex = getRandomInt(0,3);
-        $("#card").addClass(colorClasses[colorIndex])
+    $("#card").fadeOut(400, function() {
+        setCardColor();
         isFlipped = 0;
-        var newHtml = "<h2>Awkward Situation</h2>";
-        newHtml += qs[cardIndex]["q"];
-        document.getElementById("question").innerHTML = newHtml;
-    }).fadeIn(400);
+        document.getElementById("question").innerHTML = qs[cardIndex]["q"];
+        $("#card").fadeIn(1000);
+    });
 }
 function nextCard() {
     advanceCardIndex();
@@ -64,11 +66,19 @@ function randomCard() {
     displayCard();
 }
 function init() {
+ 
+
+    alert(345);
     $.getJSON(jsonUrl, function(jsonObject) {
+        alert(3);
         qs = jsonObject;
+        alert(qs);
         numCards = qs.length;
         maxIndex = numCards-1;
-        displayCard();
+        setCardColor();
+        document.getElementById("question").innerHTML = qs[cardIndex]["q"];
+        $("#card").fadeIn(1000);
     });
 }
+
 

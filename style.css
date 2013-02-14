@@ -43,14 +43,12 @@ a {
 a:hover {
     color: #bf2001;
 }
-
 div#instructions {
     padding: 15px 0px;
 }
 div#instructions p {
     text-align:center;
 }
-
 div#navigation {
     padding: 20px 30px;
     width: 100%;
@@ -65,21 +63,19 @@ button {
     border-radius: 5px;
     cursor: pointer;
     color: #fff;
-    background-color: #706757;
     background-color: #706b63;
     width: 100%;
 }
 button:hover {
-    color: #ff0;
-    box-shadow: 1px 2px #ff0;
+    background-color: #7d7870;
 }
 div#cardContainer {
     min-height: 500px;
-    padding: 10px 0px;
 }
 div#card {
-    padding: 20px 10px;
-    margin: 10px 40px;
+    padding: 0px 10px;
+    margin: 0px 40px;
+    padding-bottom: 30px;
     min-height: 200px;
     color: #222;
     background-color: #faf6ec;
@@ -87,6 +83,10 @@ div#card {
     border: 25px solid #fff;
     box-shadow: 1px 1px 3px #92865f;
     cursor: pointer;
+}
+div#card h2 {
+    padding-top: 0px;
+    padding-bottom: 8px;
 }
 div#card.c0 {
     color: #fffff0;
@@ -104,10 +104,10 @@ div#card.c3 {
     color: #fffff0;
     background-color: #972d57;
 }
-div#card p {
+div#question {
     font-style: italic;
     font-size: 1.2em;
     line-height: 1.4em;
-    text-align:center;
+    text-align: center;
     padding: 15px 0px;
-}    box-shadow: 1px 1px 1px #ff0;
+}
