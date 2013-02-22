@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"></meta>
+<title>Flashcards configuration</title>
+<meta name="description" content="Configure the flashcards game.">
+<link rel="icon" type="image/png" href="icon.png">
+
+<style type="text/css">
+
+* {
+    margin:0px;
+    padding:0px;
+    border: 0px;
+}
+body {
+    color: #222;
+    background-color: #233a4d;
+    font-family: Palatino, serif;
+    font-size: 18px;
+}
+#container {
+    min-width:200px;
+    max-width:700px;
+    margin:10px auto;
+    padding:2px 20px;
+    padding-bottom:100px;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 10px solid #cbbf9b;    
+}
+h1 {
+    font-size:1.8em;
+    font-weight:normal;
+    text-align: center;
+    padding: 15px 0px;
+    padding-bottom: 0px;
+}
+h2, h3 {
+    font-size:1em;
+    font-weight:bold;
+    float: right;
+    color: #fff;
+    background-color: #706b63;
+    padding: 2px 10px;
+    border-radius: 50%;
+}
+p {
+    padding: 5px 0px;
+}
+a {
+    color: #233a4d;
+    text-decoration: underline;
+    font-weight: normal;
+}
+a:hover {
+    color: #bf2001;
+}
+button {
+    padding: 3px;
+    border-radius: 2px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #706b63;
+    margin: 3px;
+}
+button:hover {
+    background-color: #7d7870;
+}
+button.deleteCard {
+    float: right;
+}
+button#newCard {
+    float: right;
+}
+input, textarea {
+    border-radius: 2px;
+    border: 1px solid #666;
+    display: block;
+    padding: 1px 2px;
+}
+textarea {
+    width: 90%;
+    font-family: Palatino, serif;
+    font-size: 1em;
+}
+textarea#configurationFile {
+    min-height: 150px;
+}
+label {
+    font-weight: bold;
+}
+div.card {
+    margin: 40px 0px;
+    border: 4px solid #cbbf9b;
+    border-radius: 5px;
+    padding: 5px;
+    padding-left: 10px;
+    background-color: #eaeebc;
+}
+div.clear {
+    clear:both;
+}
+</style>
+
+<script>
+
+function getElementsByClassName(node,classname) {
+  if (node.getElementsByClassName) { // use native implementation if available
+    return node.getElementsByClassName(classname);
+  } else {
+    return (function getElementsByClass(searchClass,node) {
+        if ( node == null )
+          node = document;
+        var classElements = [],
+            els = node.getElementsByTagName("*"),
+            elsLen = els.length,
+            pattern = new RegExp("(^|\\s)"+searchClass+"(\\s|$)"), i, j;
+
+        for (i = 0, j = 0; i < elsLen; i++) {
+          if ( pattern.test(els[i].className) ) {
+              classElements[j] = els[i];
+              j++;
+          }
+        }
+        return classElements;
+    })(classname, node);
+  }
+}
+
+function removeItemFromArray(fooArray, index) {
+    var newArray = [];
+    for (var i=0; i<fooArray.length; i++) {
+        if (i < index) {
+            newArray.push(fooArray[i]);
+        }
+        else if (i == index) {
+            //pass;
+        }
+        else {
+            newArray.push(fooArray[i]);
+        }
+    }
+    return newArray;
+}
+
+var countriesQnA = {"name":"Countries", "cards": [
+    {"q":"What is the capital of China?", "a":"Beijing"},
+    {"q":"What is the capital of Canada?", "a":"Ottawa"},
+    {"q":"What is the capital of India?", "a":"New Delhi"},
+    {"q":"What is the capital of Germany?", "a":"Berlin"}
+]};
+
+var jsonObj = countriesQnA;
+
+function getCardHtml(cardIndex, q, a) {
+    var html = "<div class='card' id='";
+    html += cardIndex;
+    html += "'>";
+
+    html += "<h3>";
+    var cardNum = cardIndex + 1;
+    html += cardNum;
+    html += "</h3>";
+
+    html += "<label>Question:</label><textarea class='question' id='q";
+    html += cardIndex;
+    html += "'>";
+    html += q;
+    html += "</textarea>";
+
+    html += "<label>Answer:</label><textarea class='answer' id='a";
+    html += cardIndex;
+    html += "'>";
+    html += a;
+    html += "</textarea>";
+
+    //html += "<label>Card number:</label>";
+    //html += "<input type='text' size='3' value='";
+    //html += cardNum;
+    //html += "'>";
+
+    html += "<button class='deleteCard' id='deleteCard";
+    html += cardIndex;
+    html += "'>Remove card</button><div class='clear'></div>";
+
+    html += "</div>";
+    return html;
+}
+
+function getFormHtml(obj) {
+    var cardsArray = obj["cards"];
+    var html = "Name of card set: <input type='text' id='cardSetName' value='";
+    html += obj["name"];
+    html += "'>";
+    for (var i=0; i<cardsArray.length; i++) {
+        html += getCardHtml(i, cardsArray[i]["q"], cardsArray[i]["a"]);
+    }
+    html += "<button id='newCard'>New card</button><br><br><button id='getJSON'>Update configuration file</button>";
+    return html;
+}
+
+function generateForm(obj) {
+    var html = getFormHtml(obj);
+    document.getElementById("form").innerHTML = html;
+    addListeners();
+}
+
+function getObjectFromForm() {
+    var i = 0;
+    var cardSetName = document.getElementById("cardSetName").value;
+    var cardsArray = [];
+    var keepLooping = true;
+    while (keepLooping) {
+        var stri = "" + i;
+        var divObj = document.getElementById(stri);
+        if (typeof(divObj) != 'undefined' && divObj != null) {
+            var qid = "q" + stri;
+            var aid = "a" + stri;
+            var q = document.getElementById(qid).value;
+            var a = document.getElementById(aid).value;
+            var cardObj = {"q":q, "a":a};
+            cardsArray.push(cardObj);
+            i += 1;
+        }
+        else {
+            keepLooping = false;
+        }
+    }
+    var obj = {"name":cardSetName, "cards":cardsArray};
+    return obj;
+}
+
+function addNewCard() {
+    var newCard = {"q":"", "a":""};
+    jsonObj["cards"].push(newCard);
+    generateForm(jsonObj);
+}
+
+function removeCard(cardIndex) {
+    var myArray = removeItemFromArray(jsonObj["cards"], cardIndex);
+    jsonObj["cards"] = myArray;
+    generateForm(jsonObj);
+}
+
+function addListeners() {
+    document.getElementById("newCard").addEventListener("click", function() {
+        addNewCard();
+    }, false);
+
+    document.getElementById("getJSON").addEventListener("click", function() {
+        var obj = getObjectFromForm();
+        document.getElementById("configurationFile").value = JSON.stringify(obj);
+    }, false);
+
+    var delButtonArray = getElementsByClassName(document, 'deleteCard');
+    for (var i=0; i<delButtonArray.length; i++) {
+        delButtonArray[i].addEventListener("click", function(e) {
+            var index = parseInt(e.target.id.slice(10));
+            removeCard(index);
+        }, false);
+    }
+}
+
+function init() {
+    generateForm(jsonObj);
+}
+</script>
+
+</head>
+
+<body onload="init()">
+
+<div id="container">
+
+<h1>Web form for creating and editing flashcards</h1>
+
+<div id="form">
+
+</div> <!--#form-->
+
+<textarea id="configurationFile"></textarea>
+
+</div> <!--#container-->
+
+</body>
+
+</html>

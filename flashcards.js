@@ -1,4 +1,4 @@
-var jsonUrl = "http://foofurple.com/captain-awkward-flashcards/questionsAndAnswers.json";
+var jsonUrl = "questionsAndAnswers.json";
 var cardIndex = 0;
 var qs;
 var numCards;
