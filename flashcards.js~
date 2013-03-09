@@ -41,7 +41,11 @@ function flipCard() {
         }).fadeIn(400);
     }
     else {
-        displayCard();
+
+
+
+
+
     }
 }
 function displayCard() {
